@@ -28,12 +28,10 @@ for result in results:
         url = 'http://whois.vccloud.vn/info/' + result
         r = session.get(url)
         if r.status_code == 200:
-
             info_xpath = r.html.xpath('/html/body/div/div[2]/div[1]/div[1]')
             info = info_xpath[0].text.split('\n')
             infos = []
-            with open(os.path.join(os.getcwd(), 'data_crawl.csv'),
-                      'a+') as myfile:
+            with open(os.path.join(os.getcwd(), 'data_crawl.csv'),'a+') as myfile:
                 for i in info:
                     if 'Country' in i or 'Address' in i or 'Name' in i:
                         infos.append(i)
